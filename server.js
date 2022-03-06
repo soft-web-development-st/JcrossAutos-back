@@ -8,6 +8,8 @@ const { readdirSync } = require("fs");
 const http = require("http");
 const SocketIO = require("socket.io");
 
+const path = require("path");
+
 //import routes
 
 const app = express();
@@ -28,12 +30,14 @@ app.use(cors());
 
 readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
-
-
-
-
-
-
