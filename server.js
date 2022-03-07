@@ -7,8 +7,9 @@ require("dotenv").config();
 const { readdirSync } = require("fs");
 const http = require("http");
 const SocketIO = require("socket.io");
+const path = require('path')
 
-const path = require("path");
+// const path = require("path");
 
 //import routes
 
@@ -30,13 +31,10 @@ app.use(cors());
 
 readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+});
 
 const port = process.env.PORT || 8000;
 
