@@ -8,7 +8,7 @@ const { readdirSync } = require("fs");
 const http = require("http");
 const SocketIO = require("socket.io");
 
-const path = require("path");
+// const path = require("path");
 
 //import routes
 
@@ -25,7 +25,7 @@ mongoose
 
 app.use(morgan("dev"));
 
-app.use(bodyParser.json({ limit: "2mb" }));
+app.use(bodyParser.json());
 app.use(cors());
 
 readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
@@ -38,10 +38,7 @@ readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
 //   });
 // }
 
-app.use(express.static(path.join(__dirname, "/client/build")));
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "/client/build/index.html"))
-);
+
 
 const port = process.env.PORT || 8000;
 
