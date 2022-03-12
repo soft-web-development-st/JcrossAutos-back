@@ -13,7 +13,9 @@ const SocketIO = require("socket.io");
 const app = express();
 
 mongoose
-  .connect(process.env.DATABASE)
+  .connect(
+    "mongodb+srv://jcrossautos:jcrossautos@jcrossautos.zqdzb.mongodb.net/jcrossautos?retryWrites=true&w=majority"
+  )
   .then(() => {
     console.log("DB CONNECTED");
   })
