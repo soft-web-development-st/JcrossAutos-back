@@ -11,7 +11,7 @@ cloudinary.config({
 
 
 exports.upload = async (req, res) => {
-    let result = await cloudinary.uploader.upload(req.body.image, {
+    let result = await cloudinary.uploader.upload_large(req.body.image, {
         public_id: `${Date.now()}`,
         resource_type: 'auto'
     });
