@@ -9,6 +9,8 @@ const http = require("http");
 const SocketIO = require("socket.io");
 
 
+
+
 const app = express();
 
 mongoose
@@ -26,6 +28,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
+
 
 
 
