@@ -10,10 +10,14 @@ cloudinary.config({
 }); 
 
 exports.upload = async (req, res) => {
-  let result = await cloudinary.v2.uploader.upload(req.body.image, {
-    public_id: `${Date.now()}`,
-    resource_type: "auto",
-  });
+  let result = await cloudinary.v2.uploader.upload(
+    req.body.image,
+    { timeout: 120000 },
+    {
+      public_id: `${Date.now()}`,
+      resource_type: "auto",
+    }
+  );
   res.json({
     public_id: result.public_id,
     url: result.secure_url,
