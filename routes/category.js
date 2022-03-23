@@ -22,4 +22,4 @@ router.put("/category/:slug", authCheck, adminCheck, update);
 router.delete("/category/:slug", authCheck, adminCheck, remove);
 router.get("/category/subs/:_id",  getSubs);
 
-module.exports = router;
+module.exports = router; 

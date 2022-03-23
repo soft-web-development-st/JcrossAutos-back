@@ -11,7 +11,7 @@ exports.create = async (req, res, next) => {
   } catch (error) {
     res.status(400).send("Failed to create category");
   }
-};
+}; 
 
 exports.list = async (req, res, next) => {
   res.json(await Category.find({}).sort({ createdAt: -1 }).exec());
