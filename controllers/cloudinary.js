@@ -7,7 +7,7 @@ cloudinary.config({
   api_key: 576556696241638,
   api_secret: "CjNswMc2juXGhZlaG52AwCZlvc8",
   secure: true,
-});
+}); 
 
 exports.upload = async (req, res) => {
   let result = await cloudinary.v2.uploader.upload(req.body.image, {
