@@ -24,7 +24,7 @@ mongoose
 
 app.use(morgan("dev"));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json()({limit:'5mb'}));
 app.use(cors());
 
 readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
