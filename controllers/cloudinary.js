@@ -3,16 +3,15 @@ const cloudinary = require("cloudinary").v2;
 //config
 
 cloudinary.config({
-  cloud_name: "jcross-auto",
-  api_key: 576556696241638,
-  api_secret: "CjNswMc2juXGhZlaG52AwCZlvc8",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret:  process.env.CLOUDINARY_API_SECRET,
   secure: true,
 }); 
 
 exports.upload = async (req, res) => {
-  let result = await cloudinary.v2.uploader.upload(
+  let result = await cloudinary.uploader.upload(
     req.body.image,
-    { timeout: 120000 },
     {
       public_id: `${Date.now()}`,
       resource_type: "auto",
